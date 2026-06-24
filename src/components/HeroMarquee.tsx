@@ -1,29 +1,35 @@
 import type { CSSProperties } from "react";
 
+// Warm, on-theme interior photos (full-bleed) instead of white-background
+// product cutouts — gives the spinning collage a richer, editorial feel.
+const u = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?q=80&w=800&auto=format&fit=crop`;
+
 const columnA = [
-  "/products/image2.png",
-  "/products/image4.png",
-  "/products/image6.png",
-  "/products/image8.png",
+  u("1616627561839-074385245ff6"), // warm rust bedroom, rattan
+  u("1604578762246-41134e37f9cc"), // wood dining, greenery
+  u("1532372320572-cda25653a26d"), // styled wood console
+  u("1598300042247-d088f8ab3a91"), // wood-leg armchair, clean
 ];
 const columnB = [
-  "/products/image1.png",
-  "/products/image9.png",
-  "/products/image3.png",
-  "/products/image5.png",
+  u("1567538096630-e0c55bd6374c"), // airy tufted chair
+  u("1598928506311-c55ded91a20c"), // bright neutral living room
+  u("1522444195799-478538b28823"), // cozy sofa, cushions, plant
+  u("1513161455079-7dc1de15ef3e"), // warm pampas vignette, brick wall
 ];
 
 function MarqueeCard({ src, tilt }: { src: string; tilt: number }) {
   return (
     <div
-      className="aspect-square shrink-0 overflow-hidden rounded-2xl border border-line bg-white shadow-[0_16px_46px_rgba(107,79,58,0.16)] sm:rounded-3xl"
+      className="aspect-square shrink-0 overflow-hidden rounded-2xl border border-line bg-sand shadow-[0_16px_46px_rgba(107,79,58,0.16)] sm:rounded-3xl"
       style={{ transform: `rotate(${tilt}deg)` }}
     >
       <img
         src={src}
         alt=""
         aria-hidden="true"
-        className="h-full w-full object-contain p-4 sm:p-5"
+        loading="lazy"
+        className="h-full w-full object-cover"
       />
     </div>
   );
