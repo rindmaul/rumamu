@@ -6,16 +6,16 @@ const u = (id: string) =>
   `https://images.unsplash.com/photo-${id}?q=80&w=800&auto=format&fit=crop`;
 
 const columnA = [
-  u("1616627561839-074385245ff6"), // warm rust bedroom, rattan
-  u("1604578762246-41134e37f9cc"), // wood dining, greenery
-  u("1532372320572-cda25653a26d"), // styled wood console
-  u("1598300042247-d088f8ab3a91"), // wood-leg armchair, clean
+  u("1617325721270-06dce2689456"), // brown wicker/rattan armchair
+  u("1698417931857-23a611285438"), // rattan rocking chair, plants
+  u("1609510368600-883b7f16d121"), // scalloped peacock rattan chair
+  u("1631679706909-1844bbd07221"), // living room, woven decor + pampas
 ];
 const columnB = [
-  u("1567538096630-e0c55bd6374c"), // airy tufted chair
-  u("1598928506311-c55ded91a20c"), // bright neutral living room
-  u("1522444195799-478538b28823"), // cozy sofa, cushions, plant
-  u("1513161455079-7dc1de15ef3e"), // warm pampas vignette, brick wall
+  u("1698417945941-002d5764e98b"), // round rattan chair, wood panel
+  u("1685690227414-07d33378fb59"), // rattan chairs, sunlit porch
+  u("1624755298656-b8565abb35e1"), // rattan bistro chairs
+  u("1760533534981-e6d2c1c73ea4"), // warm woven seat close-up
 ];
 
 function MarqueeCard({ src, tilt }: { src: string; tilt: number }) {
