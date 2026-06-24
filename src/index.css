@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/*
+  rumamu design tokens.
+  Palette is the brand-specified warm-craft family (cream / rattan / brown).
+  ONE accent is locked for the whole site: --color-rattan (#C89F65).
+  Shape rule (locked): surfaces = 16-24px radius, inputs = 12px, buttons = full pill.
+  Type: Cormorant Garamond (serif display) + Outfit (modern sans body).
+*/
+@theme {
+  --color-cream: #f5f0e8;
+  --color-sand: #e8ddce;
+  --color-rattan: #c89f65;
+  --color-rattan-deep: #b3884f;
+  --color-brown: #6b4f3a;
+  --color-charcoal: #201a16;
+  --color-ink: #2c241d;
+  --color-muted: #8a7a68;
+  --color-line: #e0d4c2;
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --radius-card: 1.25rem;
+  --radius-input: 0.75rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background-color: var(--color-rattan);
+    color: #fff;
+  }
+  /* Focus visibility for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-rattan-deep);
+    outline-offset: 2px;
+  }
+}
+
+/* Scroll reveal: opacity + slight lift, respects reduced motion. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hero marquee: two columns of product cards scrolling forever in opposite
+   directions. Doubled content + translateY(-50%) makes the loop seamless. */
+@keyframes hero-marquee {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+.hero-marquee-col {
+  animation: hero-marquee var(--marquee-duration, 26s) linear infinite
+    var(--marquee-dir, normal);
+}
+.hero-marquee-col:hover {
+  animation-play-state: paused;
+}
+.hero-marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 14%,
+    black 86%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 14%,
+    black 86%,
+    transparent
+  );
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee-col {
+    animation: none;
+  }
+}
+
+/* Benefits cluster: cards sit tilted in 3D space (perspective + rotateX/Y).
+   Static while idle; on hover they pop flat to face the viewer and lift.
+   Each card sets its own --card-rot; perspective is baked into the function
+   so no ancestor perspective is required. */
+.card-3d {
+  transform: perspective(1500px) var(--card-rot, none);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.card-3d:hover {
+  transform: perspective(1500px) translateY(-16px) scale(1.04);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-3d {
+    transition: none;
+  }
+}
+
+/* Subtle paper grain for warm depth (very light, CSS-only). */
+.grain-soft {
+  background-image: radial-gradient(
+    rgba(107, 79, 58, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+/* Print styles for the order receipt. */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-block {
+    display: block !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .print-clean {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+  @page {
+    margin: 1.4cm;
+  }
+}
