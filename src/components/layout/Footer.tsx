@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { Instagram, MessageCircle, Mail, ArrowRight } from "lucide-react";
+import { Instagram, MessageCircle, Mail, ArrowRight, Lock } from "lucide-react";
 import { site } from "../../config/site";
 import { useToast } from "../../context/ToastContext";
 
@@ -153,8 +153,15 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-[1280px] px-5 py-6 text-center text-xs text-cream/50 sm:px-8">
-          &copy; 2026 rumamu. All rights reserved.
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-3 px-5 py-6 text-xs text-cream/50 sm:flex-row sm:px-8">
+          <span>&copy; 2026 rumamu. All rights reserved.</span>
+          <Link
+            to="/admin/login"
+            className="inline-flex items-center gap-1.5 transition hover:text-rattan"
+          >
+            <Lock className="h-3.5 w-3.5" strokeWidth={1.8} />
+            Admin
+          </Link>
         </div>
       </div>
     </footer>
