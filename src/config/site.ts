@@ -11,8 +11,8 @@ export const site = {
   },
   hero: {
     eyebrow: "Koleksi Rotan Pilihan",
-    headingTop: "Beri ruang",
-    headingBottom: "untuk pulang.",
+    headingTop: "Your space,",
+    headingBottom: "Your era.",
     description:
       "Koleksi rotan pilihan yang menghadirkan kehangatan alami di setiap sudut rumahmu.",
     primaryCta: { label: "Belanja Sekarang", href: "/shop" },

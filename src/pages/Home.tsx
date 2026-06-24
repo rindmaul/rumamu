@@ -100,14 +100,16 @@ export default function Home() {
                 <Reveal key={c.slug} delay={i * 70}>
                   <Link
                     to={`/shop?category=${c.slug}`}
-                    className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-card border border-line bg-white p-5 transition-shadow hover:shadow-[0_18px_50px_rgba(107,79,58,0.14)]"
+                    className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-white transition-shadow hover:shadow-[0_18px_50px_rgba(107,79,58,0.14)]"
                   >
-                    <img
-                      src={c.image}
-                      alt={c.name}
-                      className="absolute inset-x-0 top-3 mx-auto h-[58%] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="relative">
+                    <div className="relative aspect-square overflow-hidden bg-white">
+                      <img
+                        src={c.image}
+                        alt={c.name}
+                        className="absolute inset-0 h-full w-full object-contain p-5 transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="px-5 pb-5 pt-1">
                       <Icon
                         className="mb-2 h-5 w-5 text-rattan-deep"
                         strokeWidth={1.8}
